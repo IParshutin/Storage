@@ -13,13 +13,13 @@ public class Product {
     private Integer id;
     private String title;
     private ProductType type;
-    private int count;
+    private String count;
     private LocalDate deliveryDate;
 
     public Product() {
     }
 
-    public Product(String title, ProductType type, int count, LocalDate deliveryDate) {
+    public Product(String title, ProductType type, String count, LocalDate deliveryDate) {
         this.title = title;
         this.type = type;
         this.count = count;
@@ -50,11 +50,11 @@ public class Product {
         this.type = type;
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(String count) {
         this.count = count;
     }
 

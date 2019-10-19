@@ -27,12 +27,12 @@ public class Application {
             productRepository.save(new Product(
                     "Some Book 1",
                     ProductType.Book,
-                    10,
+                    "10",
                     LocalDate.now()));
             productRepository.save(new Product(
                     "Some Journal 1",
                     ProductType.Journal,
-                    5,
+                    "5",
                     LocalDate.now()));
 
             for (Product product : productRepository.findAll()) {
