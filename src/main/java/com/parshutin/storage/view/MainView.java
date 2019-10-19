@@ -3,6 +3,7 @@ package com.parshutin.storage.view;
 import com.parshutin.storage.datasets.Product;
 import com.parshutin.storage.forms.MainForm;
 import com.parshutin.storage.repositories.ProductRepository;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -16,11 +17,14 @@ public class MainView extends VerticalLayout {
     private MainForm mainForm;
 
     private TextField filter = new TextField();
+    private Button addProduct = new Button("Add product");
     private Grid<Product> grid = new Grid<>(Product.class);
 
     public MainView(ProductRepository productRepository) {
         this.productRepository = productRepository;
         this.mainForm = new MainForm(productRepository, this);
+
+        addProduct.addClickListener(e -> mainForm.setProduct(new Product()));
 
         filter.setPlaceholder("Filter by title");
         filter.setValueChangeMode(ValueChangeMode.EAGER);
@@ -33,12 +37,14 @@ public class MainView extends VerticalLayout {
 
         updateList();
 
+        HorizontalLayout header = new HorizontalLayout(filter, addProduct);
+
         HorizontalLayout content = new HorizontalLayout(grid, mainForm);
         content.setSizeFull();
 
         setSizeFull();
 
-        add(filter, content);
+        add(header, content);
     }
 
     public void updateList(){
