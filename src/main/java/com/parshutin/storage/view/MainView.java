@@ -33,6 +33,7 @@ public class MainView extends VerticalLayout {
         grid.setColumns("title","type","count","deliveryDate");
         grid.asSingleSelect().addValueChangeListener(e ->
                 mainForm.setProduct(grid.asSingleSelect().getValue()));
+        grid.getColumnByKey("title").setWidth("370px");
         grid.setSizeFull();
 
         updateList();
