@@ -25,14 +25,19 @@ public class Application {
     public CommandLineRunner loadData(ProductRepository productRepository){
         return e -> {
             productRepository.save(new Product(
-                    "Some Book 1",
+                    "Thinking in Java: Bruce Eckel",
                     ProductType.Book,
                     "10",
+                    LocalDate.now().minusDays(10)));
+            productRepository.save(new Product(
+                    "Steppenwolf: Hermann Hesse",
+                    ProductType.Book,
+                    "3",
                     LocalDate.now()));
             productRepository.save(new Product(
-                    "Some Journal 1",
-                    ProductType.Journal,
-                    "5",
+                    "The Hitchhiker's Guide to the Galaxy:  Douglas Adams",
+                    ProductType.Book,
+                    "7",
                     LocalDate.now()));
 
             for (Product product : productRepository.findAll()) {

@@ -2,6 +2,8 @@
 
 ![screenshot of sample](https://sun9-58.userapi.com/c858028/v858028202/b181f/o9BUjaiLn78.jpg)
 
+Application is available online [Storage app](https://storage-test-app.herokuapp.com)
+
 This app is created to review the  Vaadin and Spring frameworks. The application provides the ability to create, read, update and delete information from the database.
 
 You can change the way the application works with the database. To do this, change the parameter `spring.jpa.hibernate.ddl-auto` in file **application.properties**. 
