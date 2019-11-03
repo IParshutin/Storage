@@ -15,7 +15,6 @@ import com.vaadin.flow.data.binder.Binder;
 public class MainForm extends FormLayout {
     private TextField title = new TextField("Title");
     private ComboBox<ProductType> type = new ComboBox<>("Product type");
-//    private NumberField count2 = new NumberField("Count");
     private TextField count = new TextField("Count");
     private DatePicker deliveryDate = new DatePicker("Delivery date");
     private Button save = new Button("Save");
@@ -33,7 +32,11 @@ public class MainForm extends FormLayout {
 
         type.setItems(ProductType.values());
 
-        binder.bindInstanceFields(this);
+        binder.addStatusChangeListener(e -> save.setEnabled(isAllFieldsNotEmpty()));
+        binder.forField(title).asRequired("Title must be filled in!").bind(Product::getTitle,Product::setTitle);
+        binder.forField(type).asRequired("Type must be filled in!").bind(Product::getType,Product::setType);
+        binder.forField(count).asRequired("Count must be filled in!").bind(Product::getCount,Product::setCount);
+        binder.forField(deliveryDate).asRequired("Delivery date must be filled in!").bind(Product::getDeliveryDate, Product::setDeliveryDate);
 
         save.addClickListener(e -> save());
         delete.addClickListener(e -> delete());
@@ -56,5 +59,12 @@ public class MainForm extends FormLayout {
     public void setProduct(Product product){
         binder.setBean(product);
         title.focus();
+    }
+
+    private boolean isAllFieldsNotEmpty() {
+        return !title.isEmpty() &&
+                !type.isEmpty() &&
+                !count.isEmpty() &&
+                !deliveryDate.isEmpty();
     }
 }
